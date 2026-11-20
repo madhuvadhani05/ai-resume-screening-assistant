@@ -36,7 +36,7 @@ api_key = st.sidebar.text_input(
 
 model = st.sidebar.selectbox(
     "Gemini model",
-    options=["gemini-flash-latest", "gemini-2.5-pro"],
+    options=["gemini-flash-lite-latest", "gemini-flash-latest"],
     index=0,
 )
 
@@ -58,7 +58,7 @@ st.sidebar.caption(
 # ----------------------------------------------------------------------
 st.title("📄 AI Resume Screening Assistant")
 st.write(
-    "Upload a job description and a batch of resumes. Claude will read "
+    "Upload a job description and a batch of resumes. Gemini will read "
     "each resume, score it against the job description, and return a "
     "ranked shortlist with strengths, gaps, and a summary for each candidate."
 )
@@ -132,8 +132,8 @@ if run_button:
         st.error("None of the uploaded resumes could be read. Please check the files.")
         st.stop()
 
-    # --- Screen with Claude ------------------------------------------------
-    with st.spinner(f"Screening {len(resumes)} resume(s) with Claude..."):
+    # --- Screen with Gemini ------------------------------------------------
+    with st.spinner(f"Screening {len(resumes)} resume(s) with Gemini..."):
         results = screen_resumes_batch(
             api_key=api_key,
             job_description=job_description,
